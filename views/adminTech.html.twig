@@ -20,6 +20,11 @@
                         <span class="text-success">Votre ticket</span>
                     {% endif %}
                 </p>
+                <form action="/litemvc/update_report" method="POST">
+                    <input class="form-control" name="ticket_id" type="hidden" value="{{ ticket.id }}">
+                    <button type="submit" class="btn btn-primary">Ecrire un rapport</button>
+                    </button>
+                </form>
                 
             </div>
         </div>

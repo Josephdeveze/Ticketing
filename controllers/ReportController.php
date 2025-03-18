@@ -22,4 +22,23 @@ class ReportController extends Controller
         header("Location: /litemvc/admin");
 
     }
+
+    public function update_report(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if(!empty($_POST['ticket_id'])){
+                $ticket_id = $_POST['ticket_id']?? '';
+                $report_model = new ReportModel($this->db);
+                $report = $report_model->find_by_ticketid($ticket_id);
+                $data = [
+                    'report'=>$report,
+                    "mail" => $_SESSION["mail"],
+                    "username" => $_SESSION["username"],
+                    "role" => $_SESSION["role"],
+                    "h1" => "Admin",
+                ];
+                $this->render("home.html.twig", $data);
+
+            }
+        }
+}
 }

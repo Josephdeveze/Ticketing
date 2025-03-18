@@ -5,6 +5,7 @@
     use Controllers\HomeController;
     use Controllers\UserController;
     use Controllers\TicketController;
+    use Controllers\ReportController;
     use Database\Database;
     use Middlewares\AuthMiddleware;
 
@@ -79,6 +80,12 @@
         $db = Database::getInstance();
         $ticketController = new TicketController($db);
         $ticketController->assign_ticket();
+    });
+    $router->map("POST", "/update_report", function (){
+        AuthMiddleware::auth();
+        $db = Database::getInstance();
+        $ReportController = new ReportController($db);
+        $ReportController->update_report();
     });
     // Matcher et gérer la requête
     $match = $router->match();
